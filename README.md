@@ -63,8 +63,8 @@ enum FullScreenCoverType: Hashable {
 }
 ```
 
-## Environment-Driven Dismissal (WORKING-IN-PROGRESS)
-The app includes a custom EnvironmentKey to provide a unified dismissal action for both modals and full-screen covers. This enables custom dismiss buttons or gestures for user-triggered dismissal, making it possible to build a consistent dismissal experience across different presentation styles.
+## Environment-Driven Dismissal (WIP)
+The app includes a custom `EnvironmentKey` to provide a unified dismissal action for both modals and full-screen covers. This enables custom dismiss buttons or gestures for user-triggered dismissal, making it possible to build a consistent dismissal experience across different presentation styles.
 
 Example EnvironmentKey Setup
 
@@ -81,8 +81,10 @@ extension EnvironmentValues {
 }
 ```
 
+Notes: The idea in this is to unify dismissal around the app or even create custom dismissal
+
 ## View Structure
-Each view uses navigationDestination(for:) to define its own navigation paths. This ensures that each screen handles its own routing logic independently.
+Each view uses `navigationDestination(for:)` to define its own navigation paths. This ensures that each screen handles its own routing logic independently.
 
 - HomeView:
     - Contains navigation paths to Detail and ExtraInfo views.
@@ -96,7 +98,7 @@ Each view uses navigationDestination(for:) to define its own navigation paths. T
     - Contains navigation paths to About and Preferences views.
 
 ## Handling Deep Links
-The handleDeeplink(url:) method in AppNavigator parses incoming URLs and updates the navigation state. For example, a URL like myapp://home/detail/123 would switch to the Home tab and push a Detail view with the ID 123 onto the stack.
+The `handleDeeplink(url:)` method in AppNavigator parses incoming URLs and updates the navigation state. For example, a URL like myapp://home/detail/123 would switch to the Home tab and push a Detail view with the ID 123 onto the stack.
 ```swift
 func handleDeeplink(url: URL) {
     guard let host = url.host else { return }
