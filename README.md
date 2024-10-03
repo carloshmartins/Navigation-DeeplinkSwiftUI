@@ -81,7 +81,7 @@ extension EnvironmentValues {
 }
 ```
 
-#### View Structure
+## View Structure
 Each view uses navigationDestination(for:) to define its own navigation paths. This ensures that each screen handles its own routing logic independently.
 
 - HomeView:
@@ -95,7 +95,7 @@ Each view uses navigationDestination(for:) to define its own navigation paths. T
 
     - Contains navigation paths to About and Preferences views.
 
-#### Handling Deep Links
+## Handling Deep Links
 The handleDeeplink(url:) method in AppNavigator parses incoming URLs and updates the navigation state. For example, a URL like myapp://home/detail/123 would switch to the Home tab and push a Detail view with the ID 123 onto the stack.
 ```swift
 func handleDeeplink(url: URL) {
@@ -170,7 +170,7 @@ func handleDeeplink(url: URL) {
 }
 ```
 
-#### Instalation
+## Instalation
 
 1. Clone the repository:
 ```bash
@@ -192,12 +192,12 @@ xcrun simctl openurl booted myapp://profile/modal
 
     - Paste a deep link into the Safari address bar on your simulator or device, e.g., myapp://settings/fullcover.
     
-#### Customization
+## Customization
 To extend this architecture, you can:
 
     - Add new destination types for each tab.
     - Define additional modal and full-screen types.
     - Update the deep link handling logic to support new paths and behaviors.
     
-#### Conclusion
+## Conclusion
 This is an working in progress app that could provide a flexible and scalable navigation architecture that integrates multi-tab navigation, deep linking, and custom modal/full-screen presentations. The use of enums for different navigation states, combined with environment-based dismissals, makes this architecture easy to extend and maintain.
