@@ -47,4 +47,30 @@ final class AppNavigatorTests: XCTestCase {
         XCTAssertEqual(navigator.currentTab, .home)
         XCTAssertEqual(navigator.homePath, [.extraInfo])
     }
+    
+    // MARK: - Profile Tab Tests
+    
+    func testHandleProfileDeepLink() {
+        let url = URL(string: "myapp://profile")!
+        navigator.handleDeeplink(url: url)
+        
+        XCTAssertEqual(navigator.currentTab, .profile)
+        XCTAssertTrue(navigator.profilePath.isEmpty)
+    }
+    
+    func testHandleProfileDetailDeepLink() {
+        let url = URL(string: "myapp://profile/detail/456")!
+        navigator.handleDeeplink(url: url)
+        
+        XCTAssertEqual(navigator.currentTab, .profile)
+        XCTAssertEqual(navigator.profilePath, [.detail("456")])
+    }
+    
+    func testHandleProfileEditDeepLink() {
+        let url = URL(string: "myapp://profile/edit")!
+        navigator.handleDeeplink(url: url)
+        
+        XCTAssertEqual(navigator.currentTab, .profile)
+        XCTAssertEqual(navigator.profilePath, [.editProfile])
+    }
 }
