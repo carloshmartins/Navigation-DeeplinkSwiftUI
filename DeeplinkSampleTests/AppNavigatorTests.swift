@@ -111,4 +111,32 @@ final class AppNavigatorTests: XCTestCase {
         XCTAssertEqual(navigator.currentTab, .settings)
         XCTAssertEqual(navigator.settingsPath, [.about])
     }
+    
+    func testHandleSettingsPreferencesDeepLink() {
+        let url = URL(string: "myapp://settings/preferences")!
+        navigator.handleDeeplink(url: url)
+        
+        XCTAssertEqual(navigator.currentTab, .settings)
+        XCTAssertEqual(navigator.settingsPath, [.preferences])
+    }
+    
+    func testHandleSettingsModalDeepLink() {
+        let url = URL(string: "myapp://settings/modal")!
+        navigator.handleDeeplink(url: url)
+        
+        XCTAssertEqual(navigator.currentTab, .settings)
+        XCTAssertTrue(navigator.settingsPath.isEmpty)
+        XCTAssertTrue(navigator.showModal)
+        XCTAssertEqual(navigator.modalType, .about)
+    }
+    
+    func testHandleSettingsFullCoverDeepLink() {
+        let url = URL(string: "myapp://settings/fullcover")!
+        navigator.handleDeeplink(url: url)
+        
+        XCTAssertEqual(navigator.currentTab, .settings)
+        XCTAssertTrue(navigator.settingsPath.isEmpty)
+        XCTAssertTrue(navigator.showFullScreen)
+        XCTAssertEqual(navigator.fullScreenType, .preferences)
+    }
 }
