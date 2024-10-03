@@ -73,4 +73,24 @@ final class AppNavigatorTests: XCTestCase {
         XCTAssertEqual(navigator.currentTab, .profile)
         XCTAssertEqual(navigator.profilePath, [.editProfile])
     }
+    
+    func testHandleProfileModalDeepLink() {
+        let url = URL(string: "myapp://profile/modal")!
+        navigator.handleDeeplink(url: url)
+        
+        XCTAssertEqual(navigator.currentTab, .profile)
+        XCTAssertTrue(navigator.profilePath.isEmpty)
+        XCTAssertTrue(navigator.showModal)
+        XCTAssertEqual(navigator.modalType, .editProfile)
+    }
+    
+    func testHandleProfileFullCoverDeepLink() {
+        let url = URL(string: "myapp://profile/fullcover")!
+        navigator.handleDeeplink(url: url)
+        
+        XCTAssertEqual(navigator.currentTab, .profile)
+        XCTAssertTrue(navigator.profilePath.isEmpty)
+        XCTAssertTrue(navigator.showFullScreen)
+        XCTAssertEqual(navigator.fullScreenType, .editProfileFullScreen)
+    }
 }
