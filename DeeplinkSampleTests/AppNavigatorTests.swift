@@ -93,4 +93,22 @@ final class AppNavigatorTests: XCTestCase {
         XCTAssertTrue(navigator.showFullScreen)
         XCTAssertEqual(navigator.fullScreenType, .editProfileFullScreen)
     }
+    
+    // MARK: - Settings Tab Tests
+    
+    func testHandleSettingsDeepLink() {
+        let url = URL(string: "myapp://settings")!
+        navigator.handleDeeplink(url: url)
+        
+        XCTAssertEqual(navigator.currentTab, .settings)
+        XCTAssertTrue(navigator.settingsPath.isEmpty)
+    }
+    
+    func testHandleSettingsAboutDeepLink() {
+        let url = URL(string: "myapp://settings/about")!
+        navigator.handleDeeplink(url: url)
+        
+        XCTAssertEqual(navigator.currentTab, .settings)
+        XCTAssertEqual(navigator.settingsPath, [.about])
+    }
 }
