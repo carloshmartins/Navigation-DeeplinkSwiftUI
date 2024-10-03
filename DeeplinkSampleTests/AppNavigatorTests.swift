@@ -31,4 +31,12 @@ final class AppNavigatorTests: XCTestCase {
         XCTAssertEqual(navigator.currentTab, .home)
         XCTAssertTrue(navigator.homePath.isEmpty)
     }
+    
+    func testHandleHomeDetailDeepLink() {
+        let url = URL(string: "myapp://home/detail/123")!
+        navigator.handleDeeplink(url: url)
+        
+        XCTAssertEqual(navigator.currentTab, .home)
+        XCTAssertEqual(navigator.homePath, [.detail("123")])
+    }
 }
