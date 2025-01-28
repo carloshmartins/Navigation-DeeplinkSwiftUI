@@ -183,14 +183,7 @@ git clone https://github.com/yourusername/SwiftUI-DeepLink-Navigation.git
 
 #### Testing Deep Links
 You can test deep links using the following methods:
-1. Xcode Debug Menu:
-
-    - Go to Debug > Open URL... and enter a custom deep link, e.g., myapp://home/detail/123.
-2. Terminal Command:
-```bash
-xcrun simctl openurl booted myapp://profile/modal
-```
-3. iOS Safari:
+1. iOS Safari:
 
     - Paste a deep link into the Safari address bar on your simulator or device, e.g., myapp://settings/fullcover.
     
